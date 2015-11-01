@@ -1,0 +1,43 @@
+
+
+//Declare pins used in an array
+int Pins[] = {2,3, 4 ,5 ,6 ,7 ,8, 9};
+int count;
+int index=0;
+boolean state=0;
+int motorPin = 5; // One motor wire connected to digital pin 5
+
+
+
+void setup() 
+{
+
+  //initialize serial communication at 9600 bits per second:
+    Serial.begin(9600);
+    
+   
+    for(index = 0; index < 8; index++)
+    {
+     pinMode(Pins[index],OUTPUT); 
+     pinMode(motorPin, OUTPUT); //initialize digital pins as outputs
+    } // end loop
+    
+   
+} //end setup
+
+void loop() 
+{
+  	 count = 64;
+  
+	for (index = 0; index < 8; index++) 
+	{
+		
+        	state = bitRead (count,index);
+        	digitalWrite(Pins[index],state);
+                delay(500);
+	}
+
+	delay(1000); // hold it at high speed for a second
+
+	
+} 
